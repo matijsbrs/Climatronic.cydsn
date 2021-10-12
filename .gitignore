@@ -1,0 +1,42 @@
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.lst
+*.a
+*/BUILD.log
+*.cyfit
+*/Export
+*/REBUILD.log
+      
+
+*.cywrk.*        
+*.cyprj.*        
+*.cycdx        
+*.cyfit        
+*.rpt        
+*.uvopt        
+*.uvproj        
+*_timing.html        
+codegentemp        
+DP8051        
+Generated_Source  
+
+CortexM0/*
+! CortexM0/*/*/*.hex
+
+/Backup
