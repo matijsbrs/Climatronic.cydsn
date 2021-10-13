@@ -151,6 +151,7 @@ ToDo
     * Time based logic
     * Controller program for improved bypass control of the Brink Renovent
     * Controller program for Freekoeling mode in the Brink Elan 10
+    * Make the Watchdog timer work properly
 
 Changes
 =======
