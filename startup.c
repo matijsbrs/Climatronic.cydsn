@@ -50,6 +50,14 @@ void Setup() {
     coils[5] = 0x00;
     coils[0] = 0xFF;
     
+    // set the uptime to zero. This value is also stored and should be reset. 
+    RegisterInterface->Datastore.SystemUptimeTimer = 0;
+    
+    // start the RTC.
+    RTC_Start();
+    RTC_SetUnixTime(RegisterInterface->Datastore.RTC_UnixTime);
+    RTC_SetPeriod(1,1);
+    
     // Config state check
     if ( RegisterInterface->System.ConfigState == 0 ) {
          // clear memory
@@ -59,7 +67,7 @@ void Setup() {
         RegisterInterface->System.StorageController = 0x01; // Set a request for the Storage controller 
         RegisterInterface->System.Address = 30;
         RegisterInterface->System.ActAsDriver = 1;      // Setup the UART so the TX is in pull up mode.
-        RegisterInterface->System.Version = 0x0200 + 5; // High byte: Major realease, low byte: minor release.
+        RegisterInterface->System.Version = 0x0200 + 6; // High byte: Major realease, low byte: minor release.
         RegisterInterface->System.UseWatchDog = 0x00; //        
         coils[0] = 0x01;
         
@@ -93,9 +101,13 @@ void Setup() {
         // automatic mode
         RegisterInterface->System.AirTempMax            = (2<<8)|(30);      // 2 C hysteresis and 30 C threshold.
         RegisterInterface->System.AirTempMin            = (2<<8)|(15);      // 2 C hysteresis and 15 C threshold.
-        RegisterInterface->System.HumidityDevation      = (5<<8)|(10);      // 5 % hysteresis and 10% difference threshold.
+        RegisterInterface->System.HumidityDevation      = (3<<8)|(6);       // 3 % hysteresis and 6% difference threshold.
         RegisterInterface->System.AutomaticOverride     = 0x0700;           // Allow All Overrides 0x0100 + 0x0200 + 0x0400 (Climate, Temp and Humidity.)
         RegisterInterface->System.ThermostatSetPoint    = (5<<8) | (175);   // in 10th of C Degrees. 0.5C Hyst. 17.5C Trigger.
+        RegisterInterface->System.HighAirFlowLong       = 3600 * 8;         // 8 hours of increased airflow   ( Guests mode )
+        RegisterInterface->System.HighAirFlowMedium     = 3600;             // 1 hour of increased airflow    ( refresh mode )
+        RegisterInterface->System.HighAirFlowShort      = 300;              // 5 minutes of increased airflow ( toilet mode )
+        
     }
     
     // System preperations

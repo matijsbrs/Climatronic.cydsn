@@ -155,6 +155,14 @@ ToDo
 
 Changes
 =======
+    17102021 ^MB Version 2.06
+        Changed Default setting for humitidy control form 10% with 5% hyst. to 6% and 3% hyst. To improve the responsiveness.
+        Enhanced the Humidity control program to also support external forced high airflow mode. 
+        There where three overrides introduced:
+            * Short : for toilet refreshing
+            * Medium: General refresh ( cleaning )
+            * Long  : Guests mode. 
+
     12102021 ^MB Version 2.05
         Renamed the project to Climatronic ;-) 
     

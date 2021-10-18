@@ -6,27 +6,27 @@
     <Toolchain Name="ARM GCC Generic" Selected="True">
       <Tool Name="prebuild" Command="" Options="" />
       <Tool Name="assembler" Command="arm-none-eabi-as.exe" Options="-mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -alh=${OutputDir}/${CompileFile}.lst -g" />
-      <Tool Name="compiler" Command="arm-none-eabi-gcc.exe" Options="-mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os" />
-      <Tool Name="linker" Command="arm-none-eabi-gcc.exe" Options="-mcpu=cortex-m0 -mthumb -L Generated_Source\PSoC4 -Wl,-Map,${OutputDir}/${ProjectShortName}.map -T Generated_Source\PSoC4\cm0gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -Os -ffat-lto-objects" />
+      <Tool Name="compiler" Command="arm-none-eabi-gcc.exe" Options="-mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=${OutputDir}/${CompileFile}.lst -g -D DEBUG -Wall -ffunction-sections -ffat-lto-objects -O0" />
+      <Tool Name="linker" Command="arm-none-eabi-gcc.exe" Options="-mcpu=cortex-m0 -mthumb -L Generated_Source\PSoC4 -Wl,-Map,${OutputDir}/${ProjectShortName}.map -T Generated_Source\PSoC4\cm0gcc.ld -specs=nano.specs -Wl,--gc-sections -g -ffunction-sections -O0 -ffat-lto-objects" />
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
     <Toolchain Name="ARM MDK Generic" Selected="False">
       <Tool Name="prebuild" Command="" Options="" />
       <Tool Name="assembler" Command="armasm.exe" Options="--cpu=Cortex-M0 --diag_style=gnu --thumb -i. -iGenerated_Source\PSoC4 -g --list=${OutputDir}/${CompileFile}.lst &quot;--predefine=__MICROLIB SETA 1&quot;" />
-      <Tool Name="compiler" Command="armcc.exe" Options="--cpu=Cortex-M0 --C99 --diag_style=gnu -I. -IGenerated_Source\PSoC4 --list --signed_chars -g -D NDEBUG -D CY_CORE_ID=0 -Ospace --split_sections -D__MICROLIB" />
+      <Tool Name="compiler" Command="armcc.exe" Options="--cpu=Cortex-M0 --C99 --diag_style=gnu -I. -IGenerated_Source\PSoC4 --list --signed_chars -g -D DEBUG -D CY_CORE_ID=0 -O0 --split_sections -D__MICROLIB" />
       <Tool Name="linker" Command="armlink.exe" Options="--cpu=Cortex-M0 --diag_style=gnu --no_startup --library_type=microlib --map --list ${OutputDir}/${ProjectShortName}.map --scatter Generated_Source\PSoC4\Cm0RealView.scat" />
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
     <Toolchain Name="ARM IAR Generic" Selected="False">
       <Tool Name="prebuild" Command="" Options="" />
-      <Tool Name="assembler" Command="iasmarm.exe" Options="--cpu Cortex-M0 -I. -IGenerated_Source\PSoC4 -s+ -M&lt;&gt; -w+ -r -DNDEBUG --fpu None" />
-      <Tool Name="compiler" Command="iccarm.exe" Options="--cpu Cortex-M0 -I. -IGenerated_Source\PSoC4 -D NDEBUG -D CY_CORE_ID=0 -I. -IGenerated_Source\PSoC4 -D NDEBUG -D CY_CORE_ID=0 --debug --endian=little -e --fpu=None --no_wrap_diagnostics" />
+      <Tool Name="assembler" Command="iasmarm.exe" Options="--cpu Cortex-M0 -I. -IGenerated_Source\PSoC4 -s+ -M&lt;&gt; -w+ -r -DDEBUG --fpu None" />
+      <Tool Name="compiler" Command="iccarm.exe" Options="--cpu Cortex-M0 -I. -IGenerated_Source\PSoC4 -D DEBUG -D CY_CORE_ID=0 -I. -IGenerated_Source\PSoC4 -D DEBUG -D CY_CORE_ID=0 --no_cse --no_unroll --no_inline --no_code_motion --no_tbaa --no_clustering --no_scheduling --debug --endian=little -e --fpu=None -On --no_wrap_diagnostics" />
       <Tool Name="linker" Command="ilinkarm.exe" Options="--semihosting --entry __iar_program_start --config Generated_Source\PSoC4\Cm0Iar.icf" />
       <Tool Name="postbuild" Command="" Options="" />
     </Toolchain>
   </Toolchains>
-  <Project Name="MiniModBusController" Path="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn" Version="6.10" Type="Normal">
-    <CMSIS_SVD_File>MiniModBusController.svd</CMSIS_SVD_File>
+  <Project Name="Climatronic" Path="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn" Version="6.10" Type="Normal">
+    <CMSIS_SVD_File>Climatronic.svd</CMSIS_SVD_File>
     <Datasheet />
     <LinkerFiles>
       <LinkerFile Toolchain="ARM GCC Generic">.\Generated_Source\PSoC4\cm0gcc.ld</LinkerFile>
@@ -34,8 +34,8 @@
       <LinkerFile Toolchain="ARM IAR Generic">.\Generated_Source\PSoC4\Cm0Iar.icf</LinkerFile>
     </LinkerFiles>
     <Folders>
-      <Folder BuildType="STRICT" Path="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn">
-        <Files Root="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn">
+        <Files Root="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn">
           <File BuildType="BUILD" Toolchain="">main.c</File>
           <File BuildType="BUILD" Toolchain="">Modbus.c</File>
           <File BuildType="BUILD" Toolchain="">interrupts.c</File>
@@ -56,8 +56,8 @@
           <File BuildType="BUILD" Toolchain="">Workers.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="STRICT" Path="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn\Generated_Source\PSoC4">
-        <Files Root="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn">
+      <Folder BuildType="STRICT" Path="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn\Generated_Source\PSoC4">
+        <Files Root="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn">
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\cyfitter_cfg.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\cyfitter_cfg.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\cymetadata.c</File>
@@ -111,8 +111,16 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\MessageTimer_PM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\MessageTimerClock.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\MessageTimerClock.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_2.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_2.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_2_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_2_PM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\EEPROM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\EEPROM.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_1.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_1.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_1_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_1_PM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DigitalIn.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DigitalIn.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DigitalIn_aliases.h</File>
@@ -123,6 +131,40 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SlowClock.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\PerSecondInterrupt.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\PerSecondInterrupt.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_3.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_3.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_3_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_3_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_0.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_0.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_0_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_0_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\Input_IRQ.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\Input_IRQ.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DE_Pin.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DE_Pin.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DE_Pin_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DE_Pin_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\RE_Pin.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\RE_Pin.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\RE_Pin_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\RE_Pin_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\OK_LED.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\OK_LED.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\OK_LED_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\OK_LED_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\ERR_LED.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\ERR_LED.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\ERR_LED_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\ERR_LED_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Mode.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Mode.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Mode_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Mode_PM.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Aux.c</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Aux.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Aux_aliases.h</File>
+          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Aux_PM.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\ModbusUART_SCBCLK.c</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\ModbusUART_SCBCLK.h</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\ModbusUART_tx.c</File>
@@ -168,88 +210,46 @@
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\cycodeshareimport.ld</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\cycodeshareexport.ld</File>
           <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\cycodeshareimport.scat</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_2.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_2.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_2_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_2_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_1.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_1.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_1_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_1_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_3.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_3.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_3_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_3_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_0.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_0.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_0_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DHT22_0_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\Input_IRQ.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\Input_IRQ.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DE_Pin.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DE_Pin.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DE_Pin_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\DE_Pin_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\RE_Pin.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\RE_Pin.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\RE_Pin_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\RE_Pin_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\OK_LED.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\OK_LED.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\OK_LED_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\OK_LED_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\ERR_LED.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\ERR_LED.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\ERR_LED_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\ERR_LED_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Mode.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Mode.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Mode_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Mode_PM.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Aux.c</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Aux.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Aux_aliases.h</File>
-          <File BuildType="BUILD" Toolchain="">Generated_Source\PSoC4\SW_Aux_PM.c</File>
         </Files>
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\codegentemp">
-        <Files Root="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn" />
+        <Files Root="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_441">
-        <Files Root="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn" />
+        <Files Root="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\ARM_GCC_473">
-        <Files Root="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn" />
+        <Files Root="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051_Keil_952">
-        <Files Root="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn" />
+        <Files Root="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\DP8051">
-        <Files Root="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn" />
+        <Files Root="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM0">
-        <Files Root="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn" />
+        <Files Root="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM0p">
-        <Files Root="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn" />
+        <Files Root="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM3">
-        <Files Root="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn" />
+        <Files Root="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM4">
-        <Files Root="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn" />
+        <Files Root="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn" />
       </Folder>
       <Folder BuildType="EXCLUDE" Path=".\CortexM7">
-        <Files Root="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn" />
+        <Files Root="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn" />
       </Folder>
-      <Folder BuildType="EXCLUDE" Path="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn\DaliMaster_v1_2\API">
-        <Files Root="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn">
+      <Folder BuildType="EXCLUDE" Path="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn\DaliMaster_v1_2\API">
+        <Files Root="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn">
           <File BuildType="EXCLUDE" Toolchain="">DaliMaster_v1_2\API\DaliMaster.c</File>
           <File BuildType="EXCLUDE" Toolchain="">DaliMaster_v1_2\API\DaliMaster.h</File>
         </Files>
       </Folder>
-      <Folder BuildType="EXCLUDE" Path="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn\DaliMaster_v1_3\API">
-        <Files Root="C:\Users\matij\source\git\psocModbus\MiniModBusController.cydsn">
+      <Folder BuildType="EXCLUDE" Path="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn\DaliMaster_v1_3\API">
+        <Files Root="C:\Users\matij\source\git\psocModbus\Climatronic.cydsn">
           <File BuildType="EXCLUDE" Toolchain="">DaliMaster_v1_3\API\DaliMaster.c</File>
           <File BuildType="EXCLUDE" Toolchain="">DaliMaster_v1_3\API\DaliMaster.h</File>
         </Files>

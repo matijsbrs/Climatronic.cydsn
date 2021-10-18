@@ -30,7 +30,7 @@ void PerSecond_Handler() {
     // This function does the time counting, important! 
     PerSecondInterrupt_ClearPending();
     RegisterInterface->Datastore.SystemUptimeTimer++;
-    
+    RTC_Update();   
 }
 
 int main()

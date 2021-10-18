@@ -57,11 +57,10 @@ typedef struct interface_s {
         uint16_t HumidityDevation;   // @17 minimum humidity diff  
         uint16_t AutomaticOverride;  // @18 0x0001: Automatic Valve program Active 0x0100:allowed 0x0002: Automatic Temperature control program active: 0x0200:Allowed 0x8000:Auto=active.
         uint16_t ThermostatSetPoint; // @19 If Automatic thermostat is used.
-        uint16_t reserved_7;
-        uint16_t reserved_8;
-        uint16_t reserved_9;
-        uint16_t reserved_10;
-        uint16_t reserved_11;
+        uint32_t HighAirFlowTimer;   // @20 Set the auto cancel timestamp for High airflow override
+        uint16_t HighAirFlowShort;   // @21 Duration of short increased flow override
+        uint16_t HighAirFlowMedium;  // @22 Duration of medium increased airflow override
+        uint16_t HighAirFlowLong;    // @23 Duration of long increased airflow override
         uint16_t reserved_12;
         uint16_t reserved_13;
         uint16_t reserved_14;
@@ -75,7 +74,7 @@ typedef struct interface_s {
     // 48
     struct Store_s {
         // 36 + 37
-        uint32 Clock;
+        uint32 reserved_19;
         // 38 + 39
         uint32 SystemUptimeTimer;       
         // 40
@@ -114,6 +113,7 @@ typedef struct interface_s {
         int16 HumidityComp[4];
         // 77,78,79,80
         int16 TemperatureComp[4];
+        uint64 RTC_UnixTime;
     } Datastore;
     
   

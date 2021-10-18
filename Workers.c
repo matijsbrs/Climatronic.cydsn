@@ -324,10 +324,95 @@ uint8 Automated_Climate_Assistant() {
     @return state of the Humidity control statemachine
     @details Control the mode of operation of the Heat recovery unit. Turn up the airflow if humidity is high.
 */
-
+uint32 StartOverride = 0; // manual override max countdown.
 uint8 Automated_Humidity_Assistant() {
     // Humidity Control
     uint8 Active = 0;
+    int16 Circulated;
+    int16 Disposed;
+    
+    enum HumidityControl  { CANCEL, NORMAL, OVERRIDE, REQUEST_SHORT_OVERRIDE, REQUEST_MEDIUM_OVERRIDE, REQUEST_LONG_OVERRIDE, REQUEST_OVERRIDE, REQUEST_HIGHFLOW, HIGH_FLOW } Humidity = RegisterInterface->System.HumidityState;
+    
+     if ( (RegisterInterface->System.AutomaticOverride & 0x0400 ) == 0x0400 ) {
+        RegisterInterface->System.AutomaticOverride |= 0x0004;
+        // Humidity control:                
+        if ( DHT22[0].IsValid && DHT22[1].IsValid ) {
+            Circulated = (int16) RegisterInterface->Datastore.Humidity[0];
+            Disposed   = (int16) RegisterInterface->Datastore.Humidity[1] + Humidity_Hyst;
+            Active = 1;
+//            if ( Disposed > (Circulated + ((RegisterInterface->System.HumidityDevation&0xFF) *10) ) ) {
+//                Humidity_Hyst = (RegisterInterface->System.HumidityDevation >> 8) * 10;
+////                RegisterInterface->Datastore.Digital_Out_4 = _RELAIS_ON;    // Increase Airflow
+//                
+//            } else {
+//                Humidity_Hyst = 0;   
+////                RegisterInterface->Datastore.Digital_Out_4 = _RELAIS_OFF;   // Return to normal airflow
+//                
+//            }
+        } 
+    }
+    
+    
+    
+    
+    switch (Humidity) {
+        case NORMAL:
+            if ( Active ) {
+                if ( Disposed > (Circulated + ((RegisterInterface->System.HumidityDevation&0xFF) *10) ) ) {
+                    Humidity_Hyst = (RegisterInterface->System.HumidityDevation >> 8) * 10;
+                    Humidity = REQUEST_HIGHFLOW;
+                    // request increased airflow
+                }
+            }
+        break;
+        
+        case OVERRIDE:
+            // check timer, if ready automatically Cancel HighFlow
+            if ( StartOverride <= RegisterInterface->Datastore.SystemUptimeTimer ) {
+                Humidity = CANCEL;   
+            }
+        break;
+        
+        case HIGH_FLOW:
+            if ( Disposed <= (Circulated + ((RegisterInterface->System.HumidityDevation&0xFF) *10) ) ) {
+                Humidity_Hyst = 0;
+                Humidity = CANCEL;
+                // Cancel increased airflow
+            }
+        break;
+        
+        case REQUEST_HIGHFLOW:
+            RegisterInterface->Datastore.Digital_Out_4 = _RELAIS_ON;   // Return to normal airflow
+            Humidity = HIGH_FLOW;
+        break;
+        
+        case REQUEST_SHORT_OVERRIDE:
+            StartOverride = RegisterInterface->Datastore.SystemUptimeTimer + RegisterInterface->System.HighAirFlowShort;
+            Humidity = REQUEST_OVERRIDE;
+            break;
+        case REQUEST_MEDIUM_OVERRIDE:
+            StartOverride = RegisterInterface->Datastore.SystemUptimeTimer + RegisterInterface->System.HighAirFlowMedium;
+            Humidity = REQUEST_OVERRIDE;
+            break;
+        case REQUEST_LONG_OVERRIDE: 
+            StartOverride = RegisterInterface->Datastore.SystemUptimeTimer + RegisterInterface->System.HighAirFlowLong;
+            Humidity = REQUEST_OVERRIDE;
+        break;
+        
+        case REQUEST_OVERRIDE:
+            RegisterInterface->Datastore.Digital_Out_4 = _RELAIS_ON;   // Return to normal airflow
+            Humidity = OVERRIDE;
+            break;
+            
+        default:
+        case CANCEL:
+            RegisterInterface->Datastore.Digital_Out_4 = _RELAIS_OFF;   // Return to normal airflow
+            Humidity = NORMAL;
+        break;
+           
+    }
+    
+    
     if ( (RegisterInterface->System.AutomaticOverride & 0x0400 ) == 0x0400 ) {
         RegisterInterface->System.AutomaticOverride |= 0x0004;
         // Humidity control:                
@@ -337,15 +422,17 @@ uint8 Automated_Humidity_Assistant() {
             
             if ( Disposed > (Circulated + ((RegisterInterface->System.HumidityDevation&0xFF) *10) ) ) {
                 Humidity_Hyst = (RegisterInterface->System.HumidityDevation >> 8) * 10;
-                RegisterInterface->Datastore.Digital_Out_4 = _RELAIS_ON;    // Increase Airflow
+//                RegisterInterface->Datastore.Digital_Out_4 = _RELAIS_ON;    // Increase Airflow
                 Active = 1;
             } else {
                 Humidity_Hyst = 0;   
-                RegisterInterface->Datastore.Digital_Out_4 = _RELAIS_OFF;   // Return to normal airflow
+//                RegisterInterface->Datastore.Digital_Out_4 = _RELAIS_OFF;   // Return to normal airflow
                 Active = 0;
             }
         }
     }
+    
+    
     return Active;
 }
 
