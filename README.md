@@ -155,6 +155,10 @@ ToDo
 
 Changes
 =======
+    19102021 ^MB Version 2.07
+        Automatic recovery of increased airflow mode in case of sensor issues.
+        The returnvalue of the Automated_Humidity_Assistant was wrong. Fixed.
+
     17102021 ^MB Version 2.06
         Changed Default setting for humitidy control form 10% with 5% hyst. to 6% and 3% hyst. To improve the responsiveness.
         Enhanced the Humidity control program to also support external forced high airflow mode. 
@@ -162,6 +166,7 @@ Changes
             * Short : for toilet refreshing
             * Medium: General refresh ( cleaning )
             * Long  : Guests mode. 
+        Added first steps to RTC support. for future Time based logic.
 
     12102021 ^MB Version 2.05
         Renamed the project to Climatronic ;-) 

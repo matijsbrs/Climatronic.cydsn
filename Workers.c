@@ -327,7 +327,7 @@ uint8 Automated_Climate_Assistant() {
 uint32 StartOverride = 0; // manual override max countdown.
 uint8 Automated_Humidity_Assistant() {
     // Humidity Control
-    uint8 Active = 0;
+    uint8 Active = 0; // The Active flag is 1 when both sensor values are valid. 
     int16 Circulated;
     int16 Disposed;
     
@@ -339,16 +339,7 @@ uint8 Automated_Humidity_Assistant() {
         if ( DHT22[0].IsValid && DHT22[1].IsValid ) {
             Circulated = (int16) RegisterInterface->Datastore.Humidity[0];
             Disposed   = (int16) RegisterInterface->Datastore.Humidity[1] + Humidity_Hyst;
-            Active = 1;
-//            if ( Disposed > (Circulated + ((RegisterInterface->System.HumidityDevation&0xFF) *10) ) ) {
-//                Humidity_Hyst = (RegisterInterface->System.HumidityDevation >> 8) * 10;
-////                RegisterInterface->Datastore.Digital_Out_4 = _RELAIS_ON;    // Increase Airflow
-//                
-//            } else {
-//                Humidity_Hyst = 0;   
-////                RegisterInterface->Datastore.Digital_Out_4 = _RELAIS_OFF;   // Return to normal airflow
-//                
-//            }
+            Active = 1; // Sensor data is valid. 
         } 
     }
     
@@ -374,10 +365,14 @@ uint8 Automated_Humidity_Assistant() {
         break;
         
         case HIGH_FLOW:
-            if ( Disposed <= (Circulated + ((RegisterInterface->System.HumidityDevation&0xFF) *10) ) ) {
-                Humidity_Hyst = 0;
+            if ( Active ) {
+                if ( Disposed <= (Circulated + ((RegisterInterface->System.HumidityDevation&0xFF) *10) ) ) {
+                    Humidity_Hyst = 0;
+                    Humidity = CANCEL; // Cancel increased airflow
+                }
+            } else {
+                // When the sensors are not valid. return to normal operation
                 Humidity = CANCEL;
-                // Cancel increased airflow
             }
         break;
         
@@ -433,7 +428,7 @@ uint8 Automated_Humidity_Assistant() {
     }
     
     
-    return Active;
+    return Humidity;
 }
 
 /**

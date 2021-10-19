@@ -31,6 +31,7 @@ void PerSecond_Handler() {
     PerSecondInterrupt_ClearPending();
     RegisterInterface->Datastore.SystemUptimeTimer++;
     RTC_Update();   
+    RegisterInterface->Datastore.RTC_UnixTime = RTC_GetUnixTime();
 }
 
 int main()
