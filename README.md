@@ -174,14 +174,15 @@ ToDo
 
 Changes
 =======
-    24102021 ^MB Version 2.08
+    24102021 ^MB Version 2.08 _b
         Added three modes of ventilation manual override.
              * (20) HighAirflowShort which defaults to 300 seconds of increased airflow
              * (21) HighAirflowMedium default: 3600 seconds
              * (22) HighAirflowLong default: 8 Hours. 
             These values can be altered through the modbus interface. 
         The Warning and Error registers are now cleared at boot. 
-		Updates to the documentation
+		Updates to the documentation added a build.bat for Graphviz automation.
+		Added the files to the PSoC creater project
 
     19102021 ^MB Version 2.07
         Automatic recovery of increased airflow mode in case of sensor issues.

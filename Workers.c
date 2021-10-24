@@ -103,6 +103,7 @@ void DHT22_Worker() {
     if ( DHT22[3].IsValid ) RegisterInterface->System.Warning &= (0xFFFF ^ _WARN_DHT22_3_INVALID ); else RegisterInterface->System.Warning |= _WARN_DHT22_3_INVALID;
 
 }
+![The San Juan Mountains are beautiful!](/assets/images/san-juan-mountains.jpg "San Juan Mountains")
 
 /**
     @fn void Memory_Worker()
