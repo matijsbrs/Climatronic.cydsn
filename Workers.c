@@ -343,9 +343,6 @@ uint8 Automated_Humidity_Assistant() {
         } 
     }
     
-    
-    
-    
     switch (Humidity) {
         case NORMAL:
             if ( Active ) {
@@ -417,12 +414,8 @@ uint8 Automated_Humidity_Assistant() {
             
             if ( Disposed > (Circulated + ((RegisterInterface->System.HumidityDevation&0xFF) *10) ) ) {
                 Humidity_Hyst = (RegisterInterface->System.HumidityDevation >> 8) * 10;
-//                RegisterInterface->Datastore.Digital_Out_4 = _RELAIS_ON;    // Increase Airflow
-                Active = 1;
             } else {
                 Humidity_Hyst = 0;   
-//                RegisterInterface->Datastore.Digital_Out_4 = _RELAIS_OFF;   // Return to normal airflow
-                Active = 0;
             }
         }
     }

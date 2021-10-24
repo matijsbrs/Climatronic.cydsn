@@ -17,41 +17,16 @@
 
 extern void PerSecond_Handler();
 
-
-void NormalStartBlink() {
-    int i;
-    for ( i = 0 ;i < 4 ; i++ ) {
-        TX_LED_Write(0x00);
-        CyDelay(50);
-        TX_LED_Write(0x01);
-        CyDelay(50);
-        TX_LED_Write(0x00);
-        CyDelay(50);
-        TX_LED_Write(0x01);
-        CyDelay(50);
-        
-        RX_LED_Write(0x00);
-        CyDelay(50);
-        RX_LED_Write(0x01);
-        CyDelay(50);
-        RX_LED_Write(0x00);
-        CyDelay(50);
-        RX_LED_Write(0x01);
-        CyDelay(50);
-        
-    }
-}
-
-
 void Setup() {
     Storage_Init();
     RegisterInterface = (interface_t *)  Storage_Read();
     
-    coils[5] = 0x00;
-    coils[0] = 0xFF;
-    
     // set the uptime to zero. This value is also stored and should be reset. 
     RegisterInterface->Datastore.SystemUptimeTimer = 0;
+    // reset Warning and Error registers.
+    RegisterInterface->System.Warning = 0x0000;
+    RegisterInterface->System.Error = 0x0000;
+    
     
     // start the RTC.
     RTC_Start();

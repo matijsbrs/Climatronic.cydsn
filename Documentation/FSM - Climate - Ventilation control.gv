@@ -1,0 +1,23 @@
+digraph finite_state_machine {
+	rankdir=LR;
+	
+	node [shape = doublecircle]; NORMAL OVERRIDE HIGHFLOW;
+	node [shape = cds]; REQ_LONG_OVERRIDE REQ_MEDIUM_OVERRIDE REQ_SHORT_OVERRIDE;
+	node [shape = circle];
+	CANCEL -> NORMAL [label = "RELAIS reset"];
+	NORMAL -> REQ_HIGHFLOW [label = "High Humidity"];
+	
+	REQ_SHORT_OVERRIDE -> REQUEST_OVERRIDE [label = "Manual override short"];
+	REQ_MEDIUM_OVERRIDE -> REQUEST_OVERRIDE [label = "Manual override medium"];
+	REQ_LONG_OVERRIDE -> REQUEST_OVERRIDE [label = "Manual override long"];
+	
+	NORMAL -> NORMAL;
+	
+	REQUEST_OVERRIDE -> OVERRIDE [label = "RELAIS set"];
+	OVERRIDE -> OVERRIDE [label = "Timer"];
+	OVERRIDE -> CANCEL [label = "Cancel override"];
+	REQ_HIGHFLOW -> HIGHFLOW [label = "RELAIS set"];
+	HIGHFLOW -> HIGHFLOW;
+	HIGHFLOW -> CANCEL [label = "Humidity normalized"];
+	
+}

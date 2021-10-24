@@ -94,6 +94,25 @@ Automatic
     The automatic mode can be controlled with the uint16 System.AutomaticOverride register.
         0x8000: The autoheater is on. 
     
+## Controle programs
+The controle programs are based around Finite State Machines FSM.
+The use of FSM's makes it easy to implement multiple control schemas in the same
+microcontroller.
+
+### Climate Control program
+This program controls the Ventilation. It can ben overriden manually or perform automatic 
+increase of ventiolation. The future version will also be able to open and close the bypass
+of the Renovent.
+
+In short the ventilation is increased whenever the paramters set in the 'humidityDeviation' register
+are met and automatic control is active and no override is given.
+
+![Climate.FSM!](./Documentation/FSM.Climate.svg "Climate.FSM")
+
+
+
+
+
     
 Warning register
 ----------------
@@ -155,6 +174,15 @@ ToDo
 
 Changes
 =======
+    24102021 ^MB Version 2.08
+        Added three modes of ventilation manual override.
+             * (20) HighAirflowShort which defaults to 300 seconds of increased airflow
+             * (21) HighAirflowMedium default: 3600 seconds
+             * (22) HighAirflowLong default: 8 Hours. 
+            These values can be altered through the modbus interface. 
+        The Warning and Error registers are now cleared at boot. 
+		Updates to the documentation
+
     19102021 ^MB Version 2.07
         Automatic recovery of increased airflow mode in case of sensor issues.
         The returnvalue of the Automated_Humidity_Assistant was wrong. Fixed.
