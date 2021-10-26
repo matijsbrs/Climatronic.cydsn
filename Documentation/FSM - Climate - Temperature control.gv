@@ -1,0 +1,22 @@
+digraph finite_state_machine {
+	rankdir=LR;
+	
+	node [shape = doublecircle]; NORMAL HIGH_TEMP_MODE LOW_TEMP_MODE;
+	node [shape = circle];
+	CANCEL -> NORMAL [label = "Turn open airvents"];
+	NORMAL -> TO_HOT [label = "Air temperature to high"];
+	NORMAL -> TO_COLD [label = "Air temperature to low"];
+	
+	TO_COLD -> LOW_TEMP_MODE [label = "Close airvents"];
+	TO_HOT -> HIGH_TEMP_MODE [label = "Close airvents"];
+	
+	NORMAL -> NORMAL;
+	
+	HIGH_TEMP_MODE -> HIGH_TEMP_MODE;
+	HIGH_TEMP_MODE -> CANCEL;
+	
+	LOW_TEMP_MODE -> LOW_TEMP_MODE;
+	LOW_TEMP_MODE -> CANCEL;
+	
+	
+}

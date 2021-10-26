@@ -1,0 +1,20 @@
+digraph finite_state_machine {
+	rankdir=LR;
+	
+	node [shape = doublecircle]; OFF REQUESTED;
+	node [shape = cds]; CANCEL;
+	node [shape = cds ]; REQUEST;
+	
+	CANCEL -> OFF [label = "Close valve, Stop CH req."];
+	OFF -> OFF;
+	
+	REQUEST -> REQUESTED [label = "Open valve, Start CH req."];
+	REQUESTED -> CANCEL;
+	OFF -> REQUEST;
+	
+	REQUESTED -> REQUESTED
+	
+	
+	
+	
+}
