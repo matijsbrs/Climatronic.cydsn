@@ -174,6 +174,11 @@ ToDo
 
 Changes
 =======
+    28112021 ^MB Version 2.09
+	    Fixed a typo, The hysteresis setting for TO_COLD mode was set to the MAX_hyst value.
+   
+
+
     24102021 ^MB Version 2.08 _b
         Added three modes of ventilation manual override.
              * (20) HighAirflowShort which defaults to 300 seconds of increased airflow

@@ -42,7 +42,7 @@ void Setup() {
         RegisterInterface->System.StorageController = 0x01; // Set a request for the Storage controller 
         RegisterInterface->System.Address = 30;
         RegisterInterface->System.ActAsDriver = 1;      // Setup the UART so the TX is in pull up mode.
-        RegisterInterface->System.Version = 0x0200 + 6; // High byte: Major realease, low byte: minor release.
+        RegisterInterface->System.Version = 0x0200 + 9; // High byte: Major realease, low byte: minor release.
         RegisterInterface->System.UseWatchDog = 0x00; //        
         coils[0] = 0x01;
         
