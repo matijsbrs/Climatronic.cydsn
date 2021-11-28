@@ -264,7 +264,7 @@ uint8 Automated_Climate_Assistant() {
                     // Test for low temperatures
                     Airtemp = (RegisterInterface->Datastore.Temperature[3] / 10) - AirTempMin_Hyst;
                     if ( Airtemp <= (RegisterInterface->System.AirTempMin & 0xFF) ) {
-                        AirTempMax_Hyst = (RegisterInterface->System.AirTempMin>>8)&0xFF;
+                        AirTempMin_Hyst = (RegisterInterface->System.AirTempMin>>8)&0xFF;
                         Climate = TO_COLD;
                     } 
                 }
@@ -301,7 +301,7 @@ uint8 Automated_Climate_Assistant() {
                 if ( DHT22[3].IsValid ) {
                     Airtemp = (RegisterInterface->Datastore.Temperature[3] / 10) - AirTempMin_Hyst;
                     if ( Airtemp > (RegisterInterface->System.AirTempMin & 0xFF) ) {
-                        AirTempMax_Hyst = 0;
+                        AirTempMin_Hyst = 0;
                         Climate = RETURN_NORMAL;
                     }     
                 }

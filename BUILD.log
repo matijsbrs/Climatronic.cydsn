@@ -1,12 +1,12 @@
---------------- Build Started: 10/19/2021 16:46:33 Project: Climatronic, Configuration: ARM GCC 5.4-2016-q2-update Release ---------------
+--------------- Build Started: 11/28/2021 18:28:58 Project: Climatronic, Configuration: ARM GCC 5.4-2016-q2-update Release ---------------
 The code generation step is up to date.
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_541\Release/Workers.lst -g -D NDEBUG -Wall -ffunction-sections -ffat-lto-objects -Os -c Workers.c -o .\CortexM0\ARM_GCC_541\Release\Workers.o
 Workers.c: In function 'Input_Worker':
-Workers.c:452:12: warning: unused variable 'Mask' [-Wunused-variable]
+Workers.c:446:12: warning: unused variable 'Mask' [-Wunused-variable]
      uint16 Mask = 0xFF00;
             ^
 Workers.c: In function 'Output_Timer_Worker':
-Workers.c:487:15: warning: unused variable 'state' [-Wunused-variable]
+Workers.c:481:15: warning: unused variable 'state' [-Wunused-variable]
          uint8 state = (output[i] & 0x01);
                ^
 arm-none-eabi-ar.exe -rs .\CortexM0\ARM_GCC_541\Release\Climatronic.a .\CortexM0\ARM_GCC_541\Release\ModbusUART.o .\CortexM0\ARM_GCC_541\Release\ModbusUART_SPI_UART.o .\CortexM0\ARM_GCC_541\Release\ModbusUART_SPI_UART_INT.o .\CortexM0\ARM_GCC_541\Release\ModbusUART_PM.o .\CortexM0\ARM_GCC_541\Release\ModbusUART_UART.o .\CortexM0\ARM_GCC_541\Release\ModbusUART_BOOT.o .\CortexM0\ARM_GCC_541\Release\ModbusUART_UART_BOOT.o .\CortexM0\ARM_GCC_541\Release\TX_LED.o .\CortexM0\ARM_GCC_541\Release\TX_LED_PM.o .\CortexM0\ARM_GCC_541\Release\RX_LED.o .\CortexM0\ARM_GCC_541\Release\RX_LED_PM.o .\CortexM0\ARM_GCC_541\Release\ADC.o .\CortexM0\ARM_GCC_541\Release\ADC_PM.o .\CortexM0\ARM_GCC_541\Release\ADC_INT.o .\CortexM0\ARM_GCC_541\Release\MessageReceived.o .\CortexM0\ARM_GCC_541\Release\EndOfMessage.o .\CortexM0\ARM_GCC_541\Release\DigitalOut.o .\CortexM0\ARM_GCC_541\Release\DigitalOut_PM.o .\CortexM0\ARM_GCC_541\Release\DieTemp.o .\CortexM0\ARM_GCC_541\Release\MessageTimer.o .\CortexM0\ARM_GCC_541\Release\MessageTimer_PM.o .\CortexM0\ARM_GCC_541\Release\MessageTimerClock.o .\CortexM0\ARM_GCC_541\Release\DHT22_2.o .\CortexM0\ARM_GCC_541\Release\DHT22_2_PM.o .\CortexM0\ARM_GCC_541\Release\EEPROM.o .\CortexM0\ARM_GCC_541\Release\DHT22_1.o .\CortexM0\ARM_GCC_541\Release\DHT22_1_PM.o .\CortexM0\ARM_GCC_541\Release\DigitalIn.o .\CortexM0\ARM_GCC_541\Release\DigitalIn_PM.o .\CortexM0\ARM_GCC_541\Release\RTC.o .\CortexM0\ARM_GCC_541\Release\SlowClock.o .\CortexM0\ARM_GCC_541\Release\PerSecondInterrupt.o .\CortexM0\ARM_GCC_541\Release\DHT22_3.o .\CortexM0\ARM_GCC_541\Release\DHT22_3_PM.o .\CortexM0\ARM_GCC_541\Release\DHT22_0.o .\CortexM0\ARM_GCC_541\Release\DHT22_0_PM.o .\CortexM0\ARM_GCC_541\Release\Input_IRQ.o .\CortexM0\ARM_GCC_541\Release\DE_Pin.o .\CortexM0\ARM_GCC_541\Release\DE_Pin_PM.o .\CortexM0\ARM_GCC_541\Release\RE_Pin.o .\CortexM0\ARM_GCC_541\Release\RE_Pin_PM.o .\CortexM0\ARM_GCC_541\Release\OK_LED.o .\CortexM0\ARM_GCC_541\Release\OK_LED_PM.o .\CortexM0\ARM_GCC_541\Release\ERR_LED.o .\CortexM0\ARM_GCC_541\Release\ERR_LED_PM.o .\CortexM0\ARM_GCC_541\Release\SW_Mode.o .\CortexM0\ARM_GCC_541\Release\SW_Mode_PM.o .\CortexM0\ARM_GCC_541\Release\SW_Aux.o .\CortexM0\ARM_GCC_541\Release\SW_Aux_PM.o .\CortexM0\ARM_GCC_541\Release\ModbusUART_SCBCLK.o .\CortexM0\ARM_GCC_541\Release\ModbusUART_tx.o .\CortexM0\ARM_GCC_541\Release\ModbusUART_tx_PM.o .\CortexM0\ARM_GCC_541\Release\ModbusUART_rx.o .\CortexM0\ARM_GCC_541\Release\ModbusUART_rx_PM.o .\CortexM0\ARM_GCC_541\Release\ADC_IRQ.o .\CortexM0\ARM_GCC_541\Release\ADC_intClock.o .\CortexM0\ARM_GCC_541\Release\CyFlash.o .\CortexM0\ARM_GCC_541\Release\CyLib.o .\CortexM0\ARM_GCC_541\Release\cyPm.o .\CortexM0\ARM_GCC_541\Release\cyutils.o .\CortexM0\ARM_GCC_541\Release\cy_em_eeprom.o .\CortexM0\ARM_GCC_541\Release\CyLFClk.o .\CortexM0\ARM_GCC_541\Release\CyBootAsmGnu.o
@@ -17,6 +17,6 @@ No ELF section .cychecksum found, creating one
 Application checksum calculated and stored in ELF section .cychecksum
 Checksum calculated and stored in ELF section .cymeta
 cyelftool.exe -S C:\Users\matij\source\git\psocModbus\Climatronic.cydsn\CortexM0\ARM_GCC_541\Release\Climatronic.elf
-Flash used: 17766 of 32768 bytes (54,2%).
+Flash used: 17774 of 32768 bytes (54,2%).
 SRAM used: 2384 of 4096 bytes (58,2%). Stack: 1024 bytes. Heap: 128 bytes.
---------------- Build Succeeded: 10/19/2021 16:46:40 ---------------
+--------------- Build Succeeded: 11/28/2021 18:29:00 ---------------
